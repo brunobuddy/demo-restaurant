@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Auberge des Sommets - Restaurant Traditionnel au Vercors</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #2c3e50;
+        }
+
+        /* Header Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:%234a90e2;stop-opacity:1" /><stop offset="100%" style="stop-color:%2387ceeb;stop-opacity:1" /></linearGradient></defs><rect fill="url(%23sky)" width="1200" height="800"/><path fill="%23e8f4f8" d="M0,400 Q150,350 300,380 T600,360 T900,390 T1200,350 L1200,800 L0,800 Z"/><path fill="%23d4e9f2" d="M0,450 Q200,400 400,430 T800,410 T1200,400 L1200,800 L0,800 Z"/><path fill="%23c0dce8" d="M0,500 Q250,450 500,480 T1000,460 T1200,450 L1200,800 L0,800 Z"/><path fill="%2385929e" d="M0,550 L300,500 L500,520 L700,490 L900,510 L1200,480 L1200,800 L0,800 Z"/><path fill="%235d6d7e" d="M100,600 L350,550 L550,570 L750,540 L950,560 L1200,530 L1200,800 L0,800 Z"/><path fill="%23445566" d="M200,650 L400,620 L600,640 L800,610 L1000,630 L1200,600 L1200,800 L0,800 Z"/><path fill="%232c3e50" d="M0,700 Q300,680 600,700 T1200,680 L1200,800 L0,800 Z"/><path fill="%231a252f" d="M0,750 L1200,730 L1200,800 L0,800 Z"/></svg>') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content {
+            z-index: 1;
+            padding: 2rem;
+            background: rgba(139, 69, 19, 0.15);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            font-family: 'Georgia', serif;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, #d4a574 0%, #8b5a3c 100%);
+            color: white;
+            text-decoration: none;
+            font-size: 1.3rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            border: none;
+            font-family: 'Georgia', serif;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(135deg, #e0b589 0%, #a0684a 100%);
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #f5f0e8 0%, #ede4d3 100%);
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #5d4e37;
+            position: relative;
+            display: inline-block;
+        }
+
+        .about h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: #d4a574;
+        }
+
+        .about p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 2rem auto;
+            color: #5d4e37;
+            line-height: 1.8;
+        }
+
+        /* Menu Highlights */
+        .menu-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(to bottom, #8b5a3c 0%, #5d4e37 100%);
+            color: white;
+        }
+
+        .menu-section h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: #f5deb3;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(212, 165, 116, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 165, 116, 0.6);
+        }
+
+        .menu-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #f5deb3;
+        }
+
+        .menu-item p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Atmosphere Section */
+        .atmosphere {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .atmosphere h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #f5deb3;
+        }
+
+        .atmosphere-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 3rem auto;
+        }
+
+        .atmosphere-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px solid rgba(212, 165, 116, 0.2);
+        }
+
+        .atmosphere-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .atmosphere-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #f5deb3;
+        }
+
+        /* Location Section */
+        .location {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #f5f0e8 0%, #ede4d3 100%);
+            text-align: center;
+        }
+
+        .location h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #5d4e37;
+        }
+
+        .location p {
+            font-size: 1.3rem;
+            color: #5d4e37;
+            margin-bottom: 1rem;
+        }
+
+        .location-icon {
+            font-size: 2rem;
+            color: #d4a574;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a252f;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .about h2,
+            .menu-section h2,
+            .atmosphere h2,
+            .location h2 {
+                font-size: 2rem;
+            }
+
+            .menu-grid,
+            .atmosphere-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Decorative Elements */
+        .snowflake {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.5rem;
+            animation: fall 10s linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                top: -10%;
+                opacity: 0.8;
+            }
+            100% {
+                top: 100%;
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>🏔️ L'Auberge des Sommets 🏔️</h1>
+            <p>Cuisine Traditionnelle du Vercors</p>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Au cœur des montagnes, découvrez l'authenticité</p>
+            <button class="cta-button" onclick="alert('Not ready yet')">Réserver une Table</button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <h2>Bienvenue à Notre Auberge</h2>
+        <p>
+            Nichée au cœur du majestueux massif du Vercors, L'Auberge des Sommets vous accueille dans un cadre 
+            chaleureux et authentique. Depuis trois générations, nous perpétuons la tradition culinaire montagnarde 
+            avec passion et respect des produits locaux.
+        </p>
+        <p>
+            Notre auberge traditionnelle offre une vue imprenable sur les sommets enneigés, et notre cheminée 
+            crépitante vous réchauffera après vos randonnées en montagne.
+        </p>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu-section">
+        <h2>Nos Spécialités Montagnardes</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <h3>🧀 Fondue Savoyarde</h3>
+                <p>
+                    Un mélange onctueux de fromages locaux (Comté, Beaufort, Abondance) 
+                    servi avec du pain artisanal et charcuterie de montagne.
+                </p>
+            </div>
+            <div class="menu-item">
+                <h3>🥘 Raclette Traditionnelle</h3>
+                <p>
+                    Fromage à raclette du Vercors fondant, accompagné de pommes de terre grenaille, 
+                    cornichons et charcuterie locale.
+                </p>
+            </div>
+            <div class="menu-item">
+                <h3>🥩 Diots au Vin Blanc</h3>
+                <p>
+                    Saucisses savoyardes mijotées au vin blanc, oignons caramélisés, 
+                    servies avec gratin dauphinois maison.
+                </p>
+            </div>
+            <div class="menu-item">
+                <h3>🥧 Tartiflette Fermière</h3>
+                <p>
+                    Pommes de terre, lardons fumés, oignons dorés et Reblochon fermier 
+                    gratinés au feu de bois.
+                </p>
+            </div>
+            <div class="menu-item">
+                <h3>🍲 Potée Montagnarde</h3>
+                <p>
+                    Légumes de saison, viandes fumées et haricots blancs mijotés lentement 
+                    dans notre marmite en fonte.
+                </p>
+            </div>
+            <div class="menu-item">
+                <h3>🍰 Tarte aux Noix du Vercors</h3>
+                <p>
+                    Notre dessert signature : pâte sablée maison garnie de noix du terroir 
+                    et caramel au miel de montagne.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Atmosphere Section -->
+    <section class="atmosphere">
+        <h2>Une Ambiance Chaleureuse</h2>
+        <div class="atmosphere-grid">
+            <div class="atmosphere-card">
+                <div class="atmosphere-icon">🔥</div>
+                <h3>Cheminée</h3>
+                <p>Grande cheminée en pierre où crépite un feu de bois accueillant</p>
+            </div>
+            <div class="atmosphere-card">
+                <div class="atmosphere-icon">🪵</div>
+                <h3>Décor Authentique</h3>
+                <p>Poutres en bois ancien et mobilier traditionnel savoyard</p>
+            </div>
+            <div class="atmosphere-card">
+                <div class="atmosphere-icon">🏔️</div>
+                <h3>Vue Panoramique</h3>
+                <p>Terrasse avec vue imprenable sur les sommets du Vercors</p>
+            </div>
+            <div class="atmosphere-card">
+                <div class="atmosphere-icon">🕯️</div>
+                <h3>Éclairage Tamisé</h3>
+                <p>Ambiance cosy avec bougies et lumières douces</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="location">
+        <h2>Nous Trouver</h2>
+        <div class="location-icon">📍</div>
+        <p><strong>L'Auberge des Sommets</strong></p>
+        <p>Chemin des Crêtes</p>
+        <p>38250 Villard-de-Lans</p>
+        <p>Parc Naturel Régional du Vercors, France</p>
+        <p style="margin-top: 2rem;">📞 Téléphone : +33 (0)4 76 XX XX XX</p>
+        <p>✉️ Email : contact@auberge-des-sommets.fr</p>
+        <div style="margin-top: 3rem;">
+            <button class="cta-button" onclick="alert('Not ready yet')">Réserver Maintenant</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 L'Auberge des Sommets - Vercors, France</p>
+        <p>Cuisine traditionnelle montagnarde depuis 1950</p>
+        <p>🏔️ Au cœur du Parc Naturel Régional du Vercors 🏔️</p>
+    </footer>
+</body>
+</html>
